@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}
+Other Tools
+{% endblock %}
+{% block content %}
+<h2>Other places to go</h2>
+<ul>
+    <li><a href="https://webmail.pieper.dev">Roundcube</a></li>
+    <li><a href="https://www.delusions.de">Delusions.de</a></li>
+    <li><a href="https://pieper.dev">Pieper.dev</a>
+    <li><a href="https://web.delusions.de">Old Webpages</a> (<a href="https:///web.delusions.de/1996">1996</a> | <a
+            href="https:///web.delusions.de/2000">2000</a> | <a href="https:///web.delusions.de/ua">UA</a>)
+    </li>
+    <li><a href="https://workreloaded.com">Workreloaded</a></li>
+    <li><a href="https://cloud.pieper.dev">Cloud</a></li>
+    <li><a href="https://gitlab.pieper.dev">Gitlab</a>
+    <li><a href="https://dbadmin.pieper.dev">DB Admin</a>
+</ul>
+
+<h2>Settings for Server</h2>
+<ul>
+    <li>Usernames: [yourname]@sonjapieper.de</li>
+    <li>(Dovecot)Imap Settings: pieper.dev, port: 993, protocol: ssl, auth: digest md5 (login may also work)</li>
+    <li>(Postfix) Smtp Settings: pieper.dev, port: 587, protocol: starttls, auth: digest md5 (login may also work)</li>
+    <li>Cleanup: Messages in Trash / Spam older than 30 days will be expunged (=deleted)</li>
+    <li>Spam Learning: Shared folders X-Spam.spam-learn and X-Spam.ham-learn feed into the bayes filter, content is
+        automatically removed
+    </li>
+    <li>Firefox Plugin für LinkTool: <a href="/static/linktool-button-1.0.xpi">Linktool.xpi</a>
+</ul>
+
+<h2>Andere Sites</h2>
+<ul>
+    <li>Newgods Blog: <a href="https://newgods.delusions.de">newgods.delusions.de</a></li>
+    <li>Boten Blog: <a href="https://boten.delusions.de">boten.delusions.de</a></li>
+    <li>Mein alter WoW Blog: <a href="https://wow.delusions.de">wow.delusions.de</a></li>
+    <li>DSA Zeug (coming soon): <a href="https://dsa.delusions.de">dsa.delusions.de</a></li>
+
+</ul>
+
+<h2>Server Administration</h2>
+<ul>
+    <li><a href="https://www.inwx.de">Domains</a> (inwx)</li>
+    <li><a href="https://robot.your-server.de">Server</a> (hetzner)</li>
+</ul>
+
+<footer>(c) 2023 Sonja Pieper</footer>
+
+{% endblock %}

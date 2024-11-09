@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+Register for Tools V2
+{% endblock %}
+{% block content %}
+<h2>Register</h2>
+
+{% if allow_registration.lower() == 'true' %}
+    {% include 'form.html' %}
+{% else %}
+    <p>User registration is currently disabled.</p>
+{% endif %}
+
+{% endblock %}

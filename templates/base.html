@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% if session.get('style')=='light' %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style-light.css') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style-dark.css') }}">        
+    {% endif %}
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='icon-16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='icon-32.png') }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='icon-48.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='icon-96.png') }}">
+    <link rel="icon" type="image/png" sizes="128x128" href="{{ url_for('static', filename='icon-128.png') }}">
+    <script src="{{ url_for('static', filename='jquery-3.7.0.min.js') }}"></script>
+</head>
+<body>
+<div class="navigation-container">
+    <div class="navigation">
+        {% if session.get('username') %}
+        <div class="nav-group">            
+            <a href="{{ url_for('links.list') }}"><img src="{{ url_for('static', filename='logo-dark.png') }}" title="Sonja's Tools V2" alt="Sonja's Tools V2" height="25px"/></a>
+        </div>     
+        {% endif %}
+
+        <div class="nav-group">           
+            {% block actions %}{% endblock %}
+        </div>      
+        
+        <div class="nav-group">
+            {% if session.get('username') %}              
+            <!--a class="button-icon button-settings"  href="{{ url_for('settings.settings') }}" title="Settings"></a-->
+            {% include 'menu_settings.html' %}            
+            {% else %}
+                <a class="button-icon button-register" href="{{ url_for('auth.register') }}" title="Register"></a>
+                <a class="button-icon button-login" href="{{ url_for('auth.login') }}" title="Login"></a>
+            {% endif %}
+        </div>
+        
+    </div>
+</div>
+
+<div class="content">
+    {% if paging %}    
+        <span class="count" >{{ paging['count']}} items <a class="button-icon button-copy" id="copyAllButton" title="Copy all"></a></span> 
+    {% endif %}
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}" onclick="toggleVisibility(this)">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+    {% block content %}
+    {% endblock %}    
+    {% if paging %}{% include 'paging.html' %} {% endif %}
+</div>
+    
+<footer>
+   Tools written by <a href="https://pieper.dev">Pieper.dev</a>
+</footer>
+
+{% include 'modal.html' %} 
+<script>
+    const username = '{{ session['username'] }}'; 
+</script>
+ <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

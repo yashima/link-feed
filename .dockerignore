@@ -1,0 +1,14 @@
+.git/
+venv/
+__pycache__/
+
+py-tools.iml
+exports/
+.env
+.dockerignore
+.gitignore
+create.sql
+README.md
+Dockerfile
+firefox-plugin
+

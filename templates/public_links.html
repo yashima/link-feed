@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}
+Sonja's Tools V2: Links
+{% endblock %}
+
+{% block actions %}    
+  <a class="button-icon button-rss" href="{{url_for('links.links_rss',user_secret=session['user_secret'])}}" title="RSS Feed"></a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="content-flex" id="links">
+    <div class="header row desktop-only">      
+        <div class="cell ">Title</div>
+        <div class="cell ">Summary</div>
+        <div class="cell ">Comment</div>        
+        <div class="cell">Tags</div>        
+    </div>
+
+    {% for link in links %}
+        <div class="row">          
+          <div class="cell "><span class="mobile-only">Title: </span><a class="address" target="_blank" href="https://{{link.domain}}{{link.url_path}}{{link.url_params}}">{{ link.title }}</a></div>
+          <div class="cell "><span class="mobile-only">Summary: </span><span class="comment">{{ link.summary }}</span></div>
+          <div class="cell "><span class="mobile-only">Comment: </span><span class="comment">{{ link.comment }}</span></div>
+          <div class="cell">
+            <span class="mobile-only">Tags: </span>
+            {% for tag in link.tags %}             
+               <span style="margin-left:10px;border:1px solid aliceblue;padding:2px;">{{ tag.name }}</span>           
+            {% endfor %}            
+          </div>          
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

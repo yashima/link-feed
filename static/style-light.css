@@ -1,0 +1,21 @@
+body { background-color: #789; }
+
+.navigation-container {     
+  background-color:#596975;
+}
+
+.content {  
+ box-shadow: #666 18px 18px 18px;
+ border-radius: 10px;
+
+ background: #28343b; /* Old browsers */
+ background: linear-gradient(to bottom, #28343b 0%,#b5bdc8 100%); 
+ color: #ccc;
+ background-attachment: fixed;
+}
+
+ .settings-menu {  
+  background-color: #596975;
+  border: 1px solid #e9c19d;  
+  color:aliceblue;
+}

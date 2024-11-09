@@ -1,0 +1,15 @@
+<div class="settings-button">
+  <a class="settings-toggle button-icon button-menu"></a>
+  <div class="settings-menu">
+    <ul>
+      <li class="menu-item divider"><a class="button-icon button-login with-text" title='User: {{ session['username'] }}'></a></span></li>
+
+      <li><a class="button-icon button-link  with-text" href="{{ url_for('social.list')}}" title="Link Stream"></a></li>
+      <li><a class="button-icon button-link  with-text" href="{{ url_for('links.list') }}" title="Link Management"></a></li>
+      <li><a class="button-icon button-tag  with-text" href="{{ url_for('tags.list') }}" title="Tag Management"></a></li>
+      <li class="menu-item"><a class="button-icon button-settings with-text" href="{{ url_for('settings.settings') }}" title="Basic Settings"></a></li>
+      <li class="menu-item divider"><a class="button-icon button-settings with-text" href="{{ url_for('settings.change_password') }}" title="Change Password"></a></li>
+      <li class="menu-item"><a class="button-icon button-logout with-text" href="{{ url_for('auth.logout') }}" title="Logout"></a></li>    
+    </ul>
+  </div>
+</div>

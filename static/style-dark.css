@@ -1,0 +1,24 @@
+body { background-color: #303841; }
+
+.navigation-container {     
+  background-color:#1b1e22;
+  border-bottom: 1px solid #444;
+}
+
+.content {    
+  border-radius: 10px;
+  border: 1px solid #444;
+  background: #292d33; 
+  color: aliceblue;
+ }
+
+ .settings-menu {  
+  background-color: #303841;
+  border: 1px solid #e9c19d;  
+  color:aliceblue;
+}
+
+.content-flex .row { 
+  border-bottom: 1px solid #444;
+  padding-top:5px;
+}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}
+Sonja's Tools V2: Link Stream
+{% endblock %}
+
+{% block actions %}    
+    <span class="navtext vcenter desktop-only">Link Stream</span>     
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="content-flex" id="links">
+    <div class="header row desktop-only ">
+        <div class="cell fixed-200 ">Title + Domain</div>        
+        <div class="cell desktop-only">About</div>
+        <div class="cell mobile-only">Comment</div>
+        <div class="cell mobile-only">Summary</div>        
+        <div class="cell fixed-200">Tags</div>
+        <div class="cell fixed-100">Posted</div>
+    </div>
+
+    {% for link in links %}
+        <div class="row">          
+          <div class="cell fixed-200 dual">
+            <span class="mobile-only ">Title: </span>
+            <a class="address" target="_blank" href="https://{{link.domain}}{{link.url_path}}{{link.url_params}}">{{ link.title }}</a>
+            <a class="filter" href="{{url_for('links.filter_domain',link_id=link.id)}}">{{link.domain}}</a>
+          </div>
+          
+          <div class="cell desktop-only">
+              {%if link.comment %}
+                <span class="comment">{{ link.comment }}</span>
+              {% else %} 
+                <span class="summary">{{ link.summary }}</span>
+              {% endif%}
+          </div>
+          <div class="cell mobile-only"><span class="mobile-only">Comment: </span><span class="comment">{{ link.comment }}</span></div>
+          <div class="cell mobile-only"><span class="mobile-only">Summary: </span><span class="summary">{{ link.summary }}</span></div>          
+          
+          <div class="cell fixed-200">
+            <span class="mobile-only">Tags: </span>
+            {% for tag in link.tags %}
+              <a class="filter"  href="{{url_for('links.filter_tag',tag_id=tag.id)}}">{{ tag.name }}</a>
+            {% endfor %}            
+          </div>
+
+          <div class="cell fixed-100 dual">
+            <span class="mobile-only">Posted by: </span>
+            <span class="user"><a href="{{url_for('links.public_links', user_secret=link.user.user_secret)}}">{{ link.user.username }}</a></span>
+            <span class="mobile-only">Posted on: </span>
+            <span class="date">{{ link.created_at|strftime('%Y-%m-%d') }}</span>
+          </div>
+         
+        </div>
+        <!-- end row -->
+    {% endfor %}
+</div>
+
+
+{% endblock %}

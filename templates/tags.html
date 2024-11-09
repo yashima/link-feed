@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}
+Sonja's Tools V2: Tags
+{% endblock %}
+
+{% block actions %}    
+    <span class="navtext vcenter desktop-only">Tags</span>
+    <a class="button-icon button-search" id="show-search" title="Search"></a>
+{% endblock %}
+
+
+{% block content %}
+
+
+<div id="form-container" class="forms {{ '' if tag else 'hidden' }}">
+<h2>Tag Action: Save</h2>
+   {% include 'form.html' %}    
+</div>
+<div id="search-container" class="forms hidden">
+    {% include 'search.html' %} 
+</div>
+
+<ul class="filters">
+  {% if session.get('tags_search_filter') %}
+    <li>Search: <a class='filter remove' href="{{url_for('tags.remove_filter',filtertype='tags_search_filter')}}">{{session.get('tags_search_filter')}}</a></li>
+  {% endif %}  
+</ul>
+
+ <div class="content-flex" id="links">
+    <div class="header row desktop-only">      
+        <div class="cell fixed-150 ">Name</div>
+        <div class="cell fixed-50 desktop-only">Link Count</div>
+        <div class="cell fixed-50">Actions</div>
+     </div>
+        
+
+     {% for tag in tags %}
+      <div class="row">      
+        <div class="cell fixed-150"><a class="filter" href="{{url_for('links.filter_tag',tag_id=tag.id,tag_name=tag.name)}}">{{tag.name}}</a></div>
+        <div class="cell fixed-50">{{tag.count}}</div>
+        <div class="cell fixed-50">
+          <div class="action-buttons" styele="align-self: flex-start;" >
+                  <a href="{{ url_for('tags.tag_edit', tag_id=tag.id) }}" class="button-icon edit-link button-edit toTop" id="edit-{{tag.id}}" title="Rename"></a>
+                  <a href="{{ url_for('tags.tag_merge', tag_id=tag.id) }}" class="button-icon edit-link button-merge toTop" id="merge-{{tag.id}}" title="Merge Tags"></a>
+                  <a href="{{ url_for('links.share_tag',user_secret=session['user_secret'], tag=tag.name) }}" class="button-icon button-publish" title="Public Links For Tag"></a>                  
+                  
+                  <a href="{{ url_for('tags.tag_delete', tag_id=tag.id) }}"  class="button-icon button-delete" title="Delete Tag" onclick="return confirm('Are you sure you want to delete this tag? It will be removed from all linksT')"></a>
+                </div>
+        </div>
+      </div>
+      {% endfor %}
+
+{% endblock %}

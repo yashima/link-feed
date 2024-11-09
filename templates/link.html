@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sonja's Link Tool:  {{ link.title }}</title>
+    {% if session.get('style')=='light' %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style-light.css') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style-dark.css') }}">        
+    {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='icon-16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='icon-32.png') }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='icon-48.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='icon-96.png') }}">
+    <link rel="icon" type="image/png" sizes="128x128" href="{{ url_for('static', filename='icon-128.png') }}">
+</head>
+<body>
+
+<div class="content">
+
+    <h1>Link for: {{ link.title }}</h1>
+    <div class="row"><div class="cell">
+    <ul>
+ {% if link.author %} <li>Author: {{ link.author }}</li>{% endif %}
+ {% if link.document_modified_at %} <li>Artikel Last Modified At: {{ link.document_modified_at }}</li>{% endif %}
+ {% if link.summary %} <li>Summary: {{ link.summary }}</li>{% endif %}
+ {% if link.comment %} <li>Comment: {{ link.comment }}</li>{% endif %}
+ {% if link.canonical_link %} <li>Canonical Link: {{ link.canonical_link }}</li>{% endif %}
+ {% if link.tags %} <li>Tags: <ul class="tags">
+            {% for tag in link.tags %}
+              <li>{{ tag.name }}</li>
+            {% endfor %}
+            </ul></li>{% endif %}    
+    <li>Domain: <a href="{{ link.domain }}">{{ link.domain }}</a></li>
+    </ul>
+    
+
+    </div></div>
+    
+    <div style="margin-top: 20px;">
+        <a class="btn btn-large"  href="https://{{link.domain}}{{link.url_path}}{{link.url_params}}">Go there</a>
+    </div>
+
+</div>
+</body>
+</html>
